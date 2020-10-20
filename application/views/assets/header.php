@@ -30,12 +30,12 @@ if (!isset($_SESSION["status"])) {
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/fontawesome-free/css/all.css">
 
+    <!-- datatable -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/datatable/datatables.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/datatable/jquery.dataTables.min.css">
+
 </head>
 
 <body>
     <script src="<?= base_url() ?>assets/js/preloader.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script> -->
-    <script src="<?= base_url()?>assets/datatable/jquery.min.js"></script>
-    <script src="<?= base_url()?>assets/datatable/jquery-3.1.0.js"></script>
-    <script src="<?= base_url()?>assets/datatable/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url()?>assets/datatable/jquery.min.js"></script>

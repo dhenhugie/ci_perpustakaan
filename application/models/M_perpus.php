@@ -18,12 +18,12 @@ class M_perpus extends CI_Model
 
     public function katalog_buku($id)
     {
-        return $this->db->query("SELECT id_buku, judul_buku, pengarang, penerbit, isbn, gambar, nama_kategori
+        return $this->db->query("SELECT id_buku, judul_buku, pengarang, penerbit, isbn, gambar, buku.id_kategori, nama_kategori, jumlah_buku, tahun_terbit, lokasi, status_buku
         FROM buku
         INNER JOIN kategori ON kategori.id_kategori = buku.id_kategori WHERE id_buku = '$id'");
     }
 
-    public function update_data($data, $where, $table)
+    public function update_data($table, $data, $where)
     {
         return $this->db->update($table, $data, $where);
     }

@@ -79,7 +79,12 @@
 
                                                         <div class="form-group">
                                                             <label>Lokasi</label>
-                                                            <input type="text" name="lokasi" class="form-control">
+                                                            <select name="lokasi" class="form-control">
+                                                                <option value="">--Pilih Lokasi--</option>
+                                                                <?php foreach ($rak as $k) { ?>
+                                                                    <option value="<?php echo $k; ?>"><?php echo $k; ?></option>
+                                                                <?php } ?>
+                                                            </select>
                                                         </div>
 
                                                         <div class="form-group">

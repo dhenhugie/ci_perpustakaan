@@ -34,6 +34,17 @@
 <!-- Custom js for this page-->
 <script src="<?= base_url() ?>assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
+
+<?php if ($this->uri->segment(2) == 'buku') { ?>
+  <script src="<?= base_url() ?>assets/datatable/jquery.min.js"></script>
+  <script src="<?= base_url() ?>assets/datatable/jquery-3.1.0.js"></script>
+  <script src="<?= base_url() ?>assets/datatable/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#tabel-buku').DataTable();
+    });
+  </script>
+<?php } ?>
 </body>
 
 </html>

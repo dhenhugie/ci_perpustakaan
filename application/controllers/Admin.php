@@ -19,6 +19,7 @@ class Admin extends CI_Controller
         $data['jmltransaksi'] = $this->M_perpus->get_data('transaksi')->num_rows();
         $data['anggota'] = $this->M_perpus->get_query('SELECT * FROM ANGGOTA LIMIT 6')->result();
         $data['buku'] = $this->M_perpus->get_query('SELECT * FROM BUKU LIMIT 6')->result();
+        $data['transaksi'] = $this->M_perpus->get_query('SELECT * FROM transaksi LIMIT 6')->result();
         $this->load->view('admin/home', $data);
     }
 
@@ -49,7 +50,7 @@ class Admin extends CI_Controller
         if ($this->form_validation->run() == true && $pass_baru == $pass_confirm) {
             $data = array('password' => md5($pass_baru));
             $where = array('id_admin' => $this->session->userdata('id'));
-            $res = $this->M_perpus->update_data($data, $where, 'admin');
+            $res = $this->M_perpus->update_data('admin', $data, $where);
             if ($res) {
                 redirect(base_url() . 'admin/ganti_password?status=success');
             } else {
@@ -69,6 +70,7 @@ class Admin extends CI_Controller
     function tambah_buku()
     {
         $data['kategori'] = $this->M_perpus->get_data('kategori')->result();
+        $data['rak'] = array('Rak 1', 'Rak 2');
         $this->load->view('admin/tambah-buku', $data);
     }
 
@@ -120,7 +122,7 @@ class Admin extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('form_errors', validation_errors());
-            redirect(base_url() . 'admin/tambah_/?status=failed');
+            redirect(base_url() . 'admin/tambah_buku/?status=failed');
         }
     }
 
@@ -134,5 +136,92 @@ class Admin extends CI_Controller
             echo 'File has been deleted';
         }
         redirect(base_url() . 'admin/buku?status=success');
+    }
+
+    function edit_buku()
+    {
+        $id = $this->uri->segment(3);
+        $buku = $this->M_perpus->katalog_buku($id)->result();
+        $data['kategori'] = $this->M_perpus->get_data('kategori')->result();
+        $data['rak'] = array('Rak 1', 'Rak 2');
+        $data['id'] = $id;
+
+        foreach ($buku as $key) {
+            $data['id'] = $key->id_buku;
+            $data['judul'] = $key->judul_buku;
+            $data['pengarang'] = $key->pengarang;
+            $data['penerbit'] = $key->penerbit;
+            $data['isbn'] = $key->isbn;
+            $data['nama_kategori'] = $key->nama_kategori;
+            $data['id_kategori'] = $key->id_kategori;
+            $data['thnterbit'] = $key->tahun_terbit;
+            $data['jumlah'] = $key->jumlah_buku;
+            $data['lokasi'] = $key->lokasi;
+            $data['status'] = $key->status_buku;
+            $data['gambar'] = $key->gambar;
+        }
+        $this->load->view('admin/edit-buku', $data);
+    }
+
+    function update_buku()
+    {
+        $id_buku = $this->input->post('id');
+        $kategori = $this->input->post('kategori');
+        $judul_buku = $this->input->post('judul');
+        $pengarang = $this->input->post('pengarang');
+        $penerbit = $this->input->post('penerbit');
+        $tahun_terbit = $this->input->post('thnterbit');
+        $isbn = $this->input->post('isbn');
+        $jumlah_buku = $this->input->post('jumlah');
+        $lokasi = $this->input->post('lokasi');
+        $status_buku = $this->input->post('status');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('judul', 'Judul Buku', 'required');
+        $this->form_validation->set_rules('status', 'Status Buku', 'required');
+        if ($this->form_validation->run() != false) {
+            $config['upload_path'] = './upload/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'gambar' . time();
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('foto')) {
+                $image = $this->upload->data();
+                $data = array(
+                    'id_kategori' => $kategori,
+                    'judul_buku' => $judul_buku,
+                    'pengarang' => $pengarang,
+                    'penerbit' => $penerbit,
+                    'tahun_terbit' => $tahun_terbit,
+                    'isbn' => $isbn,
+                    'jumlah_buku' => $jumlah_buku,
+                    'lokasi' => $lokasi,
+                    'status_buku' => $status_buku,
+                    'gambar' => $image['file_name']
+                );
+                $where = array(
+                    'id_buku' => $id_buku
+                );
+
+                $this->M_perpus->update_data('buku', $data, $where);
+                redirect(base_url() . 'admin/buku');
+            } else {
+                $data = array(
+                    'id_kategori' => $kategori,
+                    'judul_buku' => $judul_buku,
+                    'pengarang' => $pengarang,
+                    'penerbit' => $penerbit,
+                    'tahun_terbit' => $tahun_terbit,
+                    'isbn' => $isbn,
+                    'jumlah_buku' => $jumlah_buku,
+                    'lokasi' => $lokasi,
+                    'status_buku' => $status_buku
+                );
+                $where = array(
+                    'id_buku' => $id_buku
+                );
+                $this->M_perpus->update_data('buku', $data, $where);
+                redirect(base_url() . 'admin/buku');
+            }
+        }
     }
 }

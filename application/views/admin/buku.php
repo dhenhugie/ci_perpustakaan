@@ -18,8 +18,8 @@
                                     echo "<i class='fa fa-check'></i>  Data Buku telah dihapus";
                                     echo "</div>";
                                 } ?>
-                                <div class=" table-responsive">
-                                    <table class="table table-hoverable">
+                                <div class=" table-responsive p-3">
+                                    <table class="table table-hoverable" id="tabel-buku" name="tabel-buku">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
