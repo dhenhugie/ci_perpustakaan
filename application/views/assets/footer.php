@@ -35,14 +35,20 @@
 <script src="<?= base_url() ?>assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
-<?php if ($this->uri->segment(2) == 'buku') { ?>
+<?php if ($this->uri->segment(2) == 'buku' || ($this->uri->segment(1) == 'member') && $this->uri->segment(2) == 'buku') { ?>
+aaa
   <script src="<?= base_url() ?>assets/datatable/jquery.min.js"></script>
   <script src="<?= base_url() ?>assets/datatable/jquery-3.1.0.js"></script>
   <script src="<?= base_url() ?>assets/datatable/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
-    $(document).ready(function() {
-      $('#tabel-buku').DataTable();
-    });
+    $('#tabel-buku').DataTable();
+  </script>
+<?php } else if ($this->uri->segment(2) == 'anggota') { ?>
+  <script src="<?= base_url() ?>assets/datatable/jquery.min.js"></script>
+  <script src="<?= base_url() ?>assets/datatable/jquery-3.1.0.js"></script>
+  <script src="<?= base_url() ?>assets/datatable/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+    $('#tabel-anggota').DataTable();
   </script>
 <?php } ?>
 </body>

@@ -12,33 +12,21 @@
     <div class="mdc-list-group">
       <nav class="mdc-list mdc-drawer-menu">
         <div class="mdc-list-item mdc-drawer-item">
-          <a class="mdc-drawer-link" href="<?= base_url(); ?>admin">
-            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
-            Dashboard
-          </a>
-        </div>
-        <div class="mdc-list-item mdc-drawer-item">
-          <a class="mdc-drawer-link" href="<?= base_url('admin/transaksi'); ?>">
+          <a class="mdc-drawer-link" href="<?= base_url('member/peminjaman'); ?>">
             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">attach_money</i>
-            Data Transaksi
+            Peminjaman
           </a>
         </div>
         <div class="mdc-list-item mdc-drawer-item">
-          <a class="mdc-drawer-link" href="<?= base_url('admin/buku'); ?>">
+          <a class="mdc-drawer-link" href="<?= base_url('member/buku'); ?>">
             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">library_books</i>
             Data Buku
           </a>
         </div>
         <div class="mdc-list-item mdc-drawer-item">
-          <a class="mdc-drawer-link" href="<?= base_url('admin/anggota'); ?>">
-            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">people</i>
-            Data Anggota
-          </a>
-        </div>
-        <div class="mdc-list-item mdc-drawer-item">
-          <a class="mdc-drawer-link" href="<?= base_url('admin/laporan'); ?>">
+          <a class="mdc-drawer-link" href="<?= base_url('member/perpanjang'); ?>">
             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">description</i>
-            Laporan
+            Perpanjang
           </a>
         </div>
       </nav>

@@ -14,7 +14,7 @@
                                 <div class="mdc-card">
                                     <h6 class="card-title">
                                         <div class="page-header">
-                                            <h3>Edit Baru</h3>
+                                            <h3>Edit Buku</h3>
                                         </div>
                                     </h6>
                                     <div class="template-demo">
@@ -115,87 +115,6 @@
                                                             <button type="submit" class="btn btn-primary">Update</button>
                                                         </div>
                                                     </form>
-
-                                                    <!-- <form action="<?php base_url() . 'admin/update_buku' ?>" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" value="<?= $id ?>">
-                                                        <div class="form-group">
-                                                            <label>Kategori</label>
-                                                            <select name="kategori" class="form-control">
-                                                                <option value="">--Pilih Kategori--</option>
-                                                                <?php foreach ($kategori as $k) { ?>
-                                                                    <option value="<?php echo $k->id_kategori; ?>" <?php if ($id_kategori == $id_kategori) echo "SELECTED"; ?>><?php echo $k->nama_kategori; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                            <?php echo form_error('kategori'); ?>
-                                                        </div>
-
-
-                                                        <div class="form-group">
-                                                            <label>Judul Buku</label>
-                                                            <input type="text" name="judul" class="form-control" value="<?= $judul ?>">
-                                                            <?php echo form_error('judul'); ?>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Pengarang</label>
-                                                            <input type="text" name="pengarang" class="form-control" value="<?= $pengarang ?>">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Penerbit</label>
-                                                            <input type="text" name="penerbit" class="form-control" value="<?= $penerbit ?>">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Tahun Terbit</label>
-                                                            <input type="date" name="thnterbit" class="form-control" value="<?= $thnterbit ?>">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>ISBN</label>
-                                                            <input type="text" name="isbn" class="form-control" value="<?= $isbn ?>">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Jumlah Buku</label>
-                                                            <input type="text" name="jumlah" class="form-control" value="<?= $jumlah ?>">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Lokasi</label>
-                                                            <select name="lokasi" class="form-control">
-                                                                <option value="">--Pilih Lokasi--</option>
-                                                                <?php foreach ($rak as $k) { ?>
-                                                                    <option value="<?php echo $k; ?>" <?php if ($k == $lokasi) echo "SELECTED"; ?>><?php echo $k; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Status Buku</label>
-                                                            <select name="status" class="form-control">
-                                                                <option value="1" <?php if ($status == "1") echo "SELECTED"; ?>>Tersedia</option>
-                                                                <option value="0" <?php if ($status == "0") echo "SELECTED"; ?>>Sedang dipinjam</option>
-                                                            </select>
-                                                            <?php echo form_error('status'); ?>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="Gambar">Gambar</label>
-                                                            <div class="input-group">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                                    <label class="custom-file-label" for="exampleInputFile"><?php echo $gambar ?></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <input type="submit" value="Simpan" class="btn btn-primary">
-                                                        </div>
-                                                </div>
-                                                </form> -->
-
                                                 </div>
                                             </div>
                                         </div>

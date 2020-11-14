@@ -6,6 +6,7 @@ class M_perpus extends CI_Model
     {
         return $this->db->get_where($table, $where);
     }
+
     public function get_data($table)
     {
         return $this->db->get($table);
@@ -37,5 +38,10 @@ class M_perpus extends CI_Model
     {
         $this->db->where($where);
         $this->db->delete($table);
+    }
+    
+    public function get_data_single($table, $id)
+    {
+        return $this->db->get_where($table, $id);
     }
 }

@@ -117,7 +117,7 @@
                       <?php } ?>
                     </tbody>
                   </table>
-                  <div><button class="btn btn-primary mt-auto">Lihat semua anggota</button></div>
+                  <div><button class="btn btn-primary mt-auto" onclick="window.location='<?= base_url('admin/anggota') ?>'">Lihat semua anggota</button></div>
                 </div>
               </div>
             </div>

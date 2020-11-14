@@ -13,7 +13,7 @@ if (!isset($_SESSION["status"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Material Dash</title>
+    <title>Perpustakaan</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/css/vendor.bundle.base.css">
@@ -32,7 +32,7 @@ if (!isset($_SESSION["status"])) {
 
     <!-- datatable -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/datatable/datatables.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"  href="<?= base_url() ?>assets/datatable/jquery.dataTables.min.css">
 
 </head>
 

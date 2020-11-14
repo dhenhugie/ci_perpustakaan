@@ -222,6 +222,131 @@ class Admin extends CI_Controller
                 $this->M_perpus->update_data('buku', $data, $where);
                 redirect(base_url() . 'admin/buku');
             }
+        }else {
+            $this->session->set_flashdata('form_errors', validation_errors());
+            redirect(base_url() . 'admin/edit_buku/' . $id_buku . '/?status=failed');
         }
+    }
+
+    function anggota()
+    {
+        $data['anggota'] = $this->M_perpus->get_data('anggota')->result();
+        $this->load->view('admin/anggota', $data);
+    }
+
+    function tambah_anggota()
+    {
+        $this->load->view('admin/tambah-anggota');
+    }
+
+    function save_anggota()
+    {
+        $nama = $this->input->post('nama');
+        $gender = $this->input->post('gender');
+        $no_telp = $this->input->post('no_telp');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $alamat = $this->input->post('alamat');
+
+        $this->form_validation->set_rules('nama', 'Nama Anggota', 'required');
+        $this->form_validation->set_rules('gender', 'Jenis Kelmain', 'required');
+        $this->form_validation->set_rules('no_telp', 'No Telepon', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+            $data = array(
+                'nama_anggota' => $nama,
+                'alamat' => $alamat,
+                'gender' => $gender,
+                'email' => $email,
+                'no_telp' => $no_telp,
+                'password' => md5($password)
+            );
+            $res = $this->M_perpus->insert_data('anggota', $data);
+            if ($res) {
+                redirect(base_url() . 'admin/tambah_anggota/?status=success');
+            } else {
+                redirect(base_url() . 'admin/tambah_anggota/?status=failed');
+            }
+        } else {
+            $this->session->set_flashdata('form_errors', validation_errors());
+            redirect(base_url() . 'admin/tambah_anggota/?status=failed');
+        }
+    }
+
+    function edit_anggota()
+    {
+        $id = $this->uri->segment(3);
+        $where = array('id_anggota' => $id);
+        $anggota = $this->M_perpus->get_data_single('anggota', $where)->result();
+        $data['id'] = $id;
+
+        foreach ($anggota as $key) {
+            $data['id'] = $key->id_anggota;
+            $data['nama'] = $key->nama_anggota;
+            $data['alamat'] = $key->alamat;
+            $data['no_telp'] = $key->no_telp;
+            $data['email'] = $key->email;
+            $data['gender'] = $key->gender;
+            $data['password'] = $key->password;
+        }
+        // print_r($data);exit;
+        $this->load->view('admin/edit-anggota', $data);
+    }
+
+    function update_anggota()
+    {
+        $this->load->helper('security');
+        $id_anggota = $this->input->post('id');
+        $nama = $this->input->post('nama');
+        $gender = $this->input->post('gender');
+        $no_telp = $this->input->post('no_telp');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $password_old = $this->input->post('password_old');
+        $password_new = $this->input->post('password_new');
+        $alamat = $this->input->post('alamat');
+        // echo $this->input->post('password') .' - '. md5($this->input->post('password_old'));exit;
+        $this->form_validation->set_rules('nama', 'Nama Anggota', 'required');
+        $this->form_validation->set_rules('gender', 'Jenis Kelmain', 'required');
+        $this->form_validation->set_rules('no_telp', 'No Telepon', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+
+        $this->form_validation->set_rules('password_new', 'Password baru', 'required');
+        $this->form_validation->set_rules('password_old', 'Password lama', 'required');
+        // $this->form_validation->set_rules('password', 'Password', 'required|md5|trim|xss_clean|matches[password_old]');
+
+        if ($this->form_validation->run() != false && $password == md5($password_old)) {
+
+            $data = array(
+                'nama_anggota' => $nama,
+                'alamat' => $alamat,
+                'gender' => $gender,
+                'email' => $email,
+                'no_telp' => $no_telp,
+                'password' => md5($password_new)
+            );
+            $where = array(
+                'id_anggota' => $id_anggota
+            );
+            $this->M_perpus->update_data('anggota', $data, $where);
+            redirect(base_url() . 'admin/anggota');
+        } else {
+            $this->session->set_flashdata('form_errors', validation_errors());
+            $status = $password == md5($password_old) ? 'failed' : 'failedemail';
+            redirect(base_url() . 'admin/edit_anggota/' . $id_anggota . '/?status=' . $status);
+        }
+    }
+
+    function hapus_anggota($id)
+    {
+        $where = array('id_anggota' => $id);
+        $res = $this->M_perpus->hapus_data('anggota', $where);
+        
+        redirect(base_url() . 'admin/anggota?status=success');
     }
 }
